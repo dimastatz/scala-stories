@@ -33,7 +33,7 @@ object UsingExtension {
 ```
 
 ### How it works 
-So how compiler translates implcit classes? 
+Looks great! Clean readable code. And the next question how it works, how compiler translates implicit classes? Does it have performance overhead? Let's look on compiled code by running _scalac -Xprint:all_
 
 ```scala
 package <empty> {
@@ -44,6 +44,7 @@ package <empty> {
       ()
     }
   };
+  
   object UsingExtension extends Object {
     // TODO: !!! no reflection, overhead of creating new object
     def run(): Int = {
@@ -55,6 +56,7 @@ package <empty> {
       ()
     }
   };
+  
   implicit class MyExtensions$RichInt extends Object {
     <paramaccessor> private[this] val i: Int = _;
     def square(): Int = MyExtensions$RichInt.this.i.*(MyExtensions$RichInt.this.i);
@@ -66,3 +68,12 @@ package <empty> {
   }
 }
 ```
+As you can see, pretty straightforward. Compiler created an object with implicit method _RichInt_ which returns _RichInt_ class. Because compiler cannot find square method in _Int_ class, it replaces int by call to _RichInt_ method. Almost 0 impact on performance.
+
+
+### The bad way to define _implicit_ classes
+
+
+
+
+
