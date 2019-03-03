@@ -110,4 +110,16 @@ def getSelectedTextLength(doc: Option[Document]): Int = {
     .map(_.length).getOrElse(0)
 }
 ```
+When using monads, _getSelectedText_ can be implemented by using _for comprehansion_
+```scala
+def getSelectedTextLength(document: Option[Document]): Int = {
+  val result = for {
+    doc <- document
+    page <- doc.getActivePage
+    text <- page.getSelectedText
+  } yield text
+ 
+  result.getOrElse("").length
+}
+```
 
