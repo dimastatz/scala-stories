@@ -1,5 +1,5 @@
 
-# Implicit classes.
+# Implicit classes
 ## Introduction
 An implicit class is a class marked with the _implicit_ keyword. This keyword makes the class’s primary constructor available for implicit conversions when the class is in scope. For example, rather than create a separate library of String utility methods, like a StringUtilities class, you want to add your own behavior(s) to the String class. This will let you write code like this:
 
@@ -9,4 +9,22 @@ An implicit class is a class marked with the _implicit_ keyword. This keyword ma
 
 // Utilities class
 StringUtilities.increment("HAL")
+```
+
+## _implicit_ keyword class 
+
+```scala
+object MyExtensions {
+  implicit class RichInt(i: Int) {
+    def square: Int = i * i
+ }
+}
+ 
+object UsingExtension {
+  import MyExtensions._
+  def run(): Int = {
+    val x: Int = 5
+    x.square
+  }
+}
 ```
