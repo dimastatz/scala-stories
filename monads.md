@@ -71,3 +71,43 @@ trait Monad[A] {
 }
 ```
 
+### Option monad
+Option monad wrappes value of any given type and have two specific implementation: None when value is not exist (null) or Some for existing value.
+
+```scala
+trait Option[A] {
+  def map[B](f: A => B): Option[B]
+  def flatMap[B](f: A => Option[B]): Option[B]
+}
+ 
+case class None[A]() extends Option[A] {
+  def map[B](f: A => B): Option[B] = new None
+  def flatMap[B](f: A => Option[B]): Option[B] = new None
+}
+ 
+case class Some[A](a: A) extends Option[A] {
+  def map[B](f: A => B): Option[B] = {
+    Some(f(a))
+  }
+  def flatMap[B](f: A => Option[B]): Option[B] = {
+    f(a)
+  }
+}
+```
+Let's rewrite our example by using Option monad.
+```scala
+class Document {
+  def getActivePage: Option[Page] = ???
+}
+class Page {
+  def getSelectedText: Option[String] = ???
+}
+ 
+def getSelectedTextLength(doc: Option[Document]): Int = {
+  doc
+    .flatMap(_.getActivePage)
+    .flatMap(_.getSelectedText)
+    .map(_.length).getOrElse(0)
+}
+```
+
