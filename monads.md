@@ -59,3 +59,15 @@ def getSelectedTextLength(doc: Document): Int = {
   }
 }
 ```
+This version looks good,but has some problem though. If _NullPointerException_ is thrown from _getActivePage_ or _getSelectedText_ it will be unintentionally handled by our code and by doing so, our code will hide potential bug.
+
+### Monads
+Monad is a design pattern that allows structuring programs generically while automating away boilerplate code needed by the program logic and provides an easy way for composing and sequencing operations on some contained value(s).
+
+```scala
+trait Monad[A] {
+  def map[B](f: A => B): Monad[B]
+  def flatMap[B](f: A => Monad[B]): Monad[B]
+}
+```
+
