@@ -123,3 +123,43 @@ def getSelectedTextLength(document: Option[Document]): Int = {
 }
 ```
 
+### Try monad
+```scala
+trait Try[A] {
+  def map[B](f: A => B): Try[B]
+  def flatMap[B](f: A => Try[B]): Try[B]
+  def success: Boolean
+  def exception: Exception
+  def getOrElse(default: A): A
+}
+ 
+case class Success[A](a: A) extends Try[A] {
+  def map[B](f: A => B): Try[B] = Success(f(a))
+  def flatMap[B](f: A => Try[B]): Try[B] = f(a)
+  def success: Boolean = true
+  def exception: Exception = throw new Exception
+ 
+  def getOrElse(default: A): A = a
+}
+ 
+case class Failure[A](e: Exception) extends Try[A] {
+  def map[B](f: A => B): Try[B] = Failure(e)
+  def flatMap[B](f: A => Try[B]): Try[B] = Failure(e)
+  def success: Boolean = false
+  def exception: Exception = e
+  def getOrElse(default: A): A = default
+}
+ 
+object Try {
+  def apply[T](expression: => T): Try[T] = {
+    try {
+      Success(expression)
+    }
+    catch {
+      case e: Exception => Failure(e)
+    }
+  }
+}
+```
+
+### Why Try is not monad
