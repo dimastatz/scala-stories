@@ -30,7 +30,7 @@ def getSelectedTextLength(doc: Document): Int = {
   else 0
 }
 ```
-Such implementation is OK, but it has high level of nested indentation, aka [pyramid of doom](https://en.wikipedia.org/wiki/Pyramid_of_doom_(programming)). There is another way to implement it
+Such implementation is OK, but it has nested indentation, aka [pyramid of doom](https://en.wikipedia.org/wiki/Pyramid_of_doom_(programming)). There is another way to implement it
 ```scala
 def getSelectedTextLength(doc: Document): Int = {
   if(doc == null)
