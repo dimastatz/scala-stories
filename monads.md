@@ -47,7 +47,7 @@ def getSelectedTextLength(doc: Document): Int = {
   text.length
 }
 ```
-It looks flat and clean, but has _if (x == null) return 0_ pattern which returns too many times. We can simplify it by using exceptions:
+It looks flat and clean, but has ```scala if (x == null) return 0``` pattern which returns too many times. We can simplify it by using exceptions:
 ```scala
 def getSelectedTextLength(doc: Document): Int = {
   try {
