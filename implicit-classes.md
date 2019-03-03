@@ -154,7 +154,7 @@ package <empty> {
   }
 }
 ```
+As you can see, compiler infers a structural type for the _richInt_ method, and invokes square method by using reflection.
 
-As you can see it will compiler infers a structural type for the _richInt_ method, and invokes square method by using reflection.
-
+### Done
 
