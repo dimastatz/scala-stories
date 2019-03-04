@@ -127,8 +127,8 @@ def getSelectedTextLength(document: Option[Document]): Int = {
 More formal definition of _Monad_ is as follows: _monad_ M is paramtric type _M[T]_ with two operations _flatMap_ and _unit_
 that have to satisfy three laws:
 * _Associativity_: ```(m flatMap f) flatMap g == m flatMap (f flatMap g)```
-* _Left unit_:
-* _Right unit_:
+* _Left unit_: ```unit(x) flatMap f == f(x)```
+* _Right unit_: ```m flatMap unit == m```
 
 
 
