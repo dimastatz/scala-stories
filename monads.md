@@ -130,7 +130,19 @@ that have to satisfy three laws:
 * _Left unit_: ```unit(x) flatMap f == f(x)```
 * _Right unit_: ```m flatMap unit == m```
 
+#### Rules check on Option
+```scala
+val x = 2
+val m = Some(2)
 
+def unit(x: Int): Option[Int] = Some(x)
+def f(x: Int): Option[Int] = Option(x + 1)
+def g(x: Int): Option[Int] = Option(x + 2)
+
+((m flatMap f) flatMap g) == (m flatMap (x => f(x) flatMap g))
+(m flatMap f) == f(x)
+(m flatMap unit) == m
+```
 
 ### Try monad
 ```scala
