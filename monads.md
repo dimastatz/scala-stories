@@ -47,7 +47,7 @@ def getSelectedTextLength(doc: Document): Int = {
   text.length
 }
 ```
-It looks flat and clean, but has ```if (x == null) return 0``` pattern which returns too many times. We can simplify it by using exceptions:
+It looks flat and clean, but has ```if (x == null) return 0``` pattern which appears many times. We can simplify it by using exceptions:
 ```scala
 def getSelectedTextLength(doc: Document): Int = {
   try {
@@ -62,7 +62,7 @@ def getSelectedTextLength(doc: Document): Int = {
 This version looks good,but has some problem though. If _NullPointerException_ is thrown from _getActivePage_ or _getSelectedText_ it will be unintentionally handled by our code and by doing so, our code will hide potential bug.
 
 ### Monads
-Monad is a design pattern that allows structuring programs generically while automating away boilerplate code needed by the program logic and provides an easy way for composing and sequencing operations on some contained value(s).
+_Monad_ is a design pattern that allows structuring programs generically while automating away boilerplate code needed by the program logic and provides an easy way for composing and sequencing operations on some contained value(s).
 
 ```scala
 trait Monad[A] {
@@ -122,6 +122,15 @@ def getSelectedTextLength(document: Option[Document]): Int = {
   result.getOrElse("").length
 }
 ```
+
+### Monads laws
+More formal definition of _Monad_ is as follows: _monad_ M is paramtric type _M[T]_ with two operations _flatMap_ and _unit_
+that have to satisfy three laws:
+* _Associativity_: ```scala (m flatMap f) flatMap g == m flatMap (f flatMap g)
+* _Left unit_:
+* _Right unit_:
+
+
 
 ### Try monad
 ```scala
