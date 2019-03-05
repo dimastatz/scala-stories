@@ -184,3 +184,4 @@ object Try {
 ```
 
 ### Why Try is not monad
+Check left unit rule !
