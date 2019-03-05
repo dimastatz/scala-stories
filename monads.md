@@ -184,6 +184,7 @@ object Try {
 ```
 
 ### Why Try is not monad
+Rule 2 violation 
 
 ```scala
 val expr = { 1/0 }
