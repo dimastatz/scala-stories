@@ -184,4 +184,11 @@ object Try {
 ```
 
 ### Why Try is not monad
-Check left unit rule !
+
+```scala
+val expr = { 1/0 }
+def f(x: Int): Try[String] = Try(x.toString)
+
+// Rule 2 (m flatMap f) == f(x)
+Try(expr).flatMap(f) == f(expr)
+```
