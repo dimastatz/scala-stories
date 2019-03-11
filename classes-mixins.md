@@ -46,8 +46,8 @@ class Point(x: Int, y: Int) extends Shape {
   override def getArea: Double = 0
 }
 
-class Rectangle(p: Point, size: Int) extends Shape {
-  override def getArea: Double = size * size
+class Rectangle(p: Point, height: Int, width: Int) extends Shape {
+  override def getArea: Double = height * width
 }
 ```
 
