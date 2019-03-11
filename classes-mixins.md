@@ -56,7 +56,28 @@ trait ColoredShape extends Shape {
   def getColor: String = "Black"
 }
 ```
-
+### Mixins
+Mixins are traits which are used to compose a class. For example, see __ColoredSquare__ which extends Rectangle and have ColoredShape as mixin.
+```scala
+trait Shape {
+  def getArea: Double
+}
+trait ColoredShape extends Shape {
+  def getColor: String = "Black"
+}
+class Point(x: Int, y: Int) extends Shape {
+  override def getArea: Double = 0
+}
+class Rectangle(p: Point, height: Int, width: Int) extends Shape {
+  override def getArea: Double = height * width
+}
+class ColoredSquare(p: Point, size: Int) extends Rectangle(p, size, size) with ColoredShape {
+}
+val square = new ColoredSquare(new Point(1,1), 2)
+square.getArea
+square.getColor
+```
+In this clas
 
 
 
