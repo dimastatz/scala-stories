@@ -50,6 +50,12 @@ class Rectangle(p: Point, height: Int, width: Int) extends Shape {
   override def getArea: Double = height * width
 }
 ```
+Trait can extend another trait and trait's methods can have default implementation
+```scala
+trait ColoredShape extends Shape {
+  def getColor: String = "Black"
+}
+```
 
 
 
