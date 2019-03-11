@@ -1,6 +1,6 @@
 # Class composition with mixins
 ### Classes
-Classes in Scala are blueprints for creating objects. A minimal class definition is simply the keyword class and an identifier.
+Classes in Scala are blueprints for creating objects. A minimal class definition is simply the keyword _class_ and an identifier.
 ```scala
 class Point
 val point = new Point
@@ -28,3 +28,29 @@ Constructor can have default values
 class Point(var x: Int = 0, var y: Int = 0)
 val point = new Point(y = 2)
 ```
+
+### Traits
+Traits are used to share interfaces and fields between classes. They are similar to Java interfaces. Classes and objects can extend traits but traits cannot be instantiated and therefore have no parameters.
+```scala
+trait Shape {
+  def getArea: Double
+}
+```
+Use the extends keyword to extend a trait. Then implement any abstract members of the trait using the override keyword.
+```scala
+trait Shape {
+  def getArea: Double
+}
+
+class Point(x: Int, y: Int) extends Shape {
+  override def getArea: Double = 0
+}
+
+class Rectangle(p: Point, size: Int) extends Shape {
+  override def getArea: Double = size * size
+}
+```
+
+
+
+
