@@ -56,6 +56,14 @@ trait ColoredShape extends Shape {
   def getColor: String = "Black"
 }
 ```
+
+### Abstract classes vs Traits
+Scala has traits, and a trait is more flexible than an abstract class, so you wonder, “When should I use an abstract class?”
+There are two main reasons to use an abstract class in Scala:
+* You want to create a base class that requires constructor arguments.
+* The code will be called from Java code.
+
+
 ### Mixins
 Mixins are traits which are used to compose a class. For example, see __ColoredSquare__ which extends Rectangle and have ColoredShape as mixin.
 ```scala
