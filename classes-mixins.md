@@ -77,7 +77,13 @@ val square = new ColoredSquare(new Point(1,1), 2)
 square.getArea
 square.getColor
 ```
-In this clas
+It is possible to use mixins on the fly 
+```scala
+val redPoint = new {} with Point(1, 2) with ColoredShape {
+  override def getColor: String = "red"
+}
+redPoint.getColor
+```
 
 
 
