@@ -84,6 +84,21 @@ val redPoint = new {} with Point(1, 2) with ColoredShape {
 }
 redPoint.getColor
 ```
-
+Resolving conflicting members
+```scala
+trait Shape {
+  def getName: String = "Shape"
+  def getArea: Double = 0
+}
+trait ColoredShape {
+  def getName: String = "ColoredShape"
+  def getColor: String = "Black"
+}
+// Will fail if getName is not overrided
+class Point extends Shape with ColoredShape {
+}
+val p = new Point
+p.getName
+```
 
 
